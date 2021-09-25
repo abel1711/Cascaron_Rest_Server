@@ -60,11 +60,11 @@ const userPatch = (req, res = response) => {
 
 const userDelete = async (req, res = response) => {
 
-    const {id} = req.params;
+    const {id} = req.params;//el id viena en el mismo url
     //para borrarlo fisicamente
     //no se aconseja hacer asi para no perder la integridad referencial
     // const usuario = await Usuario.findByIdAndDelete(id);
-
+  
     //poner el estado en false
     const borrar = {estado: false};
     const usuario = await Usuario.findByIdAndUpdate(id, borrar);
