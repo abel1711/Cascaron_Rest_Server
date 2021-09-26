@@ -30,7 +30,7 @@
         <script src="https://accounts.google.com/gsi/client" async defer></script>
         <script>
 
-
+          //pregunto si estoy usando el localhost, para poder establecer la url del fetch
           var url = window.location.hostname.includes('localhost')
                     ? 'http://localhost:8080/api/auth/google'
                     : 'https://restserver-prueba-abel.herokuapp.com/api/auth/google';
