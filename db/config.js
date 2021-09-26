@@ -1,5 +1,5 @@
 const mongoose = require ('mongoose');
-
+require('colors');
 
 const dbConnection = async ()=>{
     
@@ -11,10 +11,10 @@ const dbConnection = async ()=>{
             // useCreateIndex: true,
             // useFindAndModify: false
         });
-        console.log('Base de Datos Online!');
+        console.log('Base de Datos Online!'.green);
     } catch (error) {
         console.log(error);
-        throw new Error('No se pudo iniciar la Base de Datos');
+        throw new Error('No se pudo iniciar la Base de Datos'.red);
     }
 }
 

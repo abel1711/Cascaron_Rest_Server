@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require ('cors');
+require('colors');
 const { dbConnection } = require('../db/config');
 
 class Server {
@@ -8,15 +9,21 @@ class Server {
 
         this.app  = express();
         this.port = process.env.PORT;
-        //ruta autentificacion
-        this.authPath = '/api/auth';
-        //Usuarios
-        this.usuariosPath = '/api/user';
+
+        //rutas
+        this.paths = {
+            auth : '/api/auth',//ruta autentificacion
+            categorias : '/api/categorias',//rutas categorias
+            user : '/api/user'//Usuarios
+        }
+        
         //Conectar a la base de datos
         this.conectarDB();
+
         //Middlewares
         this.middlewares();
-        //rutas de la app
+
+        //llamar a las rutas de la app
         this.routers();
 
     }
@@ -34,13 +41,14 @@ class Server {
 
     routers(){
        
-        this.app.use(this.authPath, require('../routes/auth'))
-        this.app.use(this.usuariosPath, require('../routes/user'))
+        this.app.use(this.paths.auth, require('../routes/auth'))
+        this.app.use(this.paths.categorias, require('../routes/categorias'))
+        this.app.use(this.paths.user, require('../routes/user'))
     }
 
     listen(){
         this.app.listen(this.port, ()=>{
-            console.log(`escuchando en el puerto: ${this.port}`);
+            console.log(`Escuchando en el puerto: ${this.port}`.green);
         });
     }
 
