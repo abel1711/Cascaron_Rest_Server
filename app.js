@@ -1,9 +1,10 @@
 require('dotenv').config();
 
+const { cabecero } = require('./helpers/cabecero');
 const Server = require('./models/server');
 
 
-console.clear();
+cabecero();
 
 
 
