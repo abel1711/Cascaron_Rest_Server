@@ -41,7 +41,9 @@ const buscarUsuarios = async  (req, res = response, termino = '')=>{
 const buscarCategorias = async  ( req, res = response, termino = '' )=>{
 
     if(termino === 'all'){
-        const categorias = await Categoria.find({estado:true});
+        const categorias = await Categoria.find({estado:true})
+                                    .populate('usuario', 'name');
+
         return res.json({
             totals: categorias.length,
             results : categorias
@@ -67,7 +69,9 @@ const buscarCategorias = async  ( req, res = response, termino = '' )=>{
 const buscarProductos = async  ( req, res = response, termino = '' )=>{
 
     if(termino === 'all'){
-        const productos = await Producto.find({estado:true});
+        const productos = await Producto.find({estado:true})
+                                    .populate('usuario', 'name')
+                                    .populate('categoria', 'name');
         return res.json({
             totals: productos.length,
             results : productos

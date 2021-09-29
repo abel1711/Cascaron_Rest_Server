@@ -15,7 +15,10 @@ const UsuarioSchema = Schema ({
         required:[true, 'The password is required']
     },
     img:{
-        type:String,
+        type:String
+    },
+    public_id_cloudinary:{
+        type:String
     },
     role:{
         type:String,
